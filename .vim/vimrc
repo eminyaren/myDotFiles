@@ -23,6 +23,8 @@ runtime! debian.vim
 " line enables syntax highlighting by default.
 syntax on
 
+filetype plugin indent on
+
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
