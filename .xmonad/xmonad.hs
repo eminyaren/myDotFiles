@@ -42,6 +42,10 @@ myManageHook = composeAll
     [ className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
     , className =? "QjackCtl"  --> doFloat
+    , className =? "Inkscape"  --> doShift "7"
+    , className =? "Gimp"      --> doShift "8"
+    , className =? "Brave-browser" --> doShift "2"
+    , className =? "firefox" --> doShift "2"
     , isFullscreen -->  doFullFloat
     ]
 
