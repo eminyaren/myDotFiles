@@ -1,8 +1,15 @@
 
-xmonad.hs:84:64: warning: [-Wdeprecations]
+xmonad.hs:33:13: warning: [-Wdeprecations]
+    In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
+    Deprecated: "Use spacingRaw instead."
+   |
+33 | myLayout = (spacing 5 $ tiled) ||| Mirror tiled ||| Full ||| threeCol
+   |             ^^^^^^^
+
+xmonad.hs:85:64: warning: [-Wdeprecations]
     In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
    |
-84 |     , manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
+85 |     , manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
    |                                                                ^^^^^^^^^^^^^

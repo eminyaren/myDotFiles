@@ -8,6 +8,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
@@ -26,10 +27,10 @@ myStartup = do
      spawnOnce "nm-applet &"
      spawnOnce "volumeicon &"
      spawnOnce "xfce4-power-manager &"
-     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x333333  --height 22 &"
+     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x000000  --height 20 &"
 
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = (spacing 5 $ tiled) ||| Mirror tiled ||| Full ||| threeCol
   where
     threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
@@ -52,18 +53,18 @@ myManageHook = composeAll
 
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep             = magenta " • "
-    , ppTitle           = xmobarColor "green" "" . shorten 50 
-    , ppCurrent         = wrap "| " " |"
-    , ppHidden          = white . wrap "*" ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    { ppSep             = orange " • "
+    , ppTitle           = white . shorten 50 
+    , ppCurrent         = white . wrap "| " " |"
+    , ppHidden          = orange . wrap "*" ""
+    , ppHiddenNoWindows = green . wrap " " ""
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
     }
 
 
-blue, lowWhite, magenta, red, white, yellow :: String -> String
-magenta  = xmobarColor "#ff79c6" ""
-blue     = xmobarColor "#bd93f9" ""
+green, lowWhite, orange, red, white, yellow :: String -> String
+orange  = xmobarColor "#c87137" ""
+green     = xmobarColor "#5aa02c" ""
 white    = xmobarColor "#f8f8f2" ""
 yellow   = xmobarColor "#f1fa8c" ""
 red      = xmobarColor "#ff5555" ""
@@ -86,12 +87,13 @@ myConfig = def
     , startupHook = myStartup
     , terminal = "kitty"
     , borderWidth = 3
-    , focusedBorderColor = "#ff79c6"
+    , focusedBorderColor = "#5aa02c"
     , handleEventHook = handleEventHook def <+> fullscreenEventHook
     }
   `additionalKeysP`
     [ ("M-b", spawn "brave")
     , ("M-r", spawn "~/scripts/resolve")
     , ("M-S-C-p", spawn "poweroff")
+    , ("M-t", spawn "thunar")
     
     ]
